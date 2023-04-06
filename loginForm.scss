@@ -5,11 +5,31 @@ $secondary-color: #6c757d;
 $background-color: #f8f9fa;
 $font-family: 'Roboto', sans-serif;
 
-body {
-  background-color: $background-color;
-  font-family: $font-family;
-}
-
+@keyframes softColorShadow {
+    0% {
+      background-color: #e0f7fa;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    }
+    50% {
+      background-color: #b2ebf2;
+      box-shadow: 0 0 16px rgba(0, 0, 0, 0.2);
+    }
+    100% {
+      background-color: #e0f7fa;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    }
+  }
+  
+  body {
+    font-family: $font-family;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: softColorShadow 10s ease-in-out infinite;
+  }
+  
 .container {
     width: 100%;
     max-width: 400px;
