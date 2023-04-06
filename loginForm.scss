@@ -5,6 +5,7 @@ $secondary-color: #6c757d;
 $background-color: #f8f9fa;
 $font-family: 'Roboto', sans-serif;
 
+
 @keyframes softColorShadow {
     0% {
       background-color: #e0f7fa;
@@ -31,14 +32,21 @@ $font-family: 'Roboto', sans-serif;
   }
   
 .container {
-    width: 100%;
-    max-width: 400px;
-    margin: 200px auto;
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 5px;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  width: 100%;
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  animation: float 3s ease-in-out infinite;
+
+  &:hover {
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
+  }
 }
+
 
 .form-group {
   margin-bottom: 15px;
