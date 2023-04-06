@@ -1,29 +1,30 @@
-import { addTask } from '../fetchUser';
+import { addTask } from '../fetchUser'
 
 describe('addTask function', () => {
-  beforeEach(() => {
-    localStorage.clear();
-    sessionStorage.clear();
-  });
+  test('should add a task to the user content array in localStorage', () => {
+    localStorage.setItem(
+      'users',
+      JSON.stringify([
+        {
+          username: 'testUser',
+          content: [],
+        },
+      ]),
+    )
+    sessionStorage.setItem('user', JSON.stringify({ username: 'testUser' }))
 
-  test('should add a task to the user', () => {
-    const task = 'New task';
-    const username = 'testUser';
-    sessionStorage.setItem('user', JSON.stringify({ username }));
+    addTask('Sample task')
 
-    const users = [
-      {
-        username,
-        content: [],
-      },
-    ];
-    localStorage.setItem('users', JSON.stringify(users));
+    const users = JSON.parse(localStorage.getItem('users'))
+    const user = users.find(user => user.username === 'testUser')
 
-    addTask(task);
+    expect(user.content.length).toBe(1)
+    expect(user.content[0]).toMatchObject({
+      taskText: 'Sample task',
+      likeStatus: false,
+    })
 
-    const updatedUsers = JSON.parse(localStorage.getItem('users'));
-    const updatedUser = updatedUsers.find((user) => user.username === username);
-
-    expect(updatedUser.content).toEqual([task]);
-  });
-});
+    localStorage.clear()
+    sessionStorage.clear()
+  })
+})
