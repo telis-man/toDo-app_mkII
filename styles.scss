@@ -4,11 +4,31 @@ $primary-color: #007bff;
 $navbar-light-color: #fff;
 $navbar-light-bg: #f8f9fa;
 $font-family: 'Roboto', sans-serif;
+$background-color: #f0f2f5;
+
+@keyframes softColorShadow {
+  0% {
+    background-color: #e6f0ff;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  }
+  50% {
+    background-color: #b3d1ff;
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.2);
+  }
+  100% {
+    background-color: #e6f0ff;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  }
+}
 
 body {
-  background-color: $navbar-light-bg;
   font-family: $font-family;
+  margin: 0;
+  height: 100vh;
+  background-color: $background-color;
+  animation: softColorShadow 10s ease-in-out infinite;
 }
+
 
 .navbar {
   position: relative;
@@ -118,3 +138,51 @@ body {
 }
 }
 
+
+
+@media (max-width: 991px) {
+  .navbar-brand {
+    font-size: 1rem;
+  }
+
+  .nav-link {
+    padding: 0.5rem 0.6rem;
+  }
+
+  .container {
+    max-width: 60%;
+  }
+
+  .form-control {
+    font-size: 12px;
+  }
+
+  .btn {
+    font-size: 12px;
+    padding: 5px 8px;
+  }
+}
+
+@media (max-width: 767px) {
+  .navbar-brand {
+    font-size: 0.9rem;
+  }
+
+  .nav-link {
+    padding: 0.5rem 0.4rem;
+  }
+  .container {
+    max-width: 100%;
+    padding: 15px;
+  }
+
+  .form-control {
+    font-size: 11px;
+    padding: 5px 8px;
+  }
+
+  .btn {
+    font-size: 11px;
+    padding: 4px 6px;
+  }
+}
