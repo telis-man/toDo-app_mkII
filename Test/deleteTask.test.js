@@ -1,29 +1,26 @@
-import { deleteTask } from '../fetchUser';
+import { deleteTask } from '../fetchUser'
 
 describe('deleteTask function', () => {
-  beforeEach(() => {
-    localStorage.clear();
-    sessionStorage.clear();
-  });
+  test('should remove a task from the user content array in localStorage', () => {
+    localStorage.setItem(
+      'users',
+      JSON.stringify([
+        {
+          username: 'testUser',
+          content: [{ taskText: 'Sample task', likeStatus: false }],
+        },
+      ]),
+    )
+    sessionStorage.setItem('user', JSON.stringify({ username: 'testUser' }))
 
-  test('should delete a task from the user', () => {
-    const task = 'Test task';
-    const username = 'testUser';
-    sessionStorage.setItem('user', JSON.stringify({ username }));
+    deleteTask('Sample task')
 
-    const users = [
-      {
-        username,
-        content: [task],
-      },
-    ];
-    localStorage.setItem('users', JSON.stringify(users));
+    const users = JSON.parse(localStorage.getItem('users'))
+    const user = users.find(user => user.username === 'testUser')
 
-    deleteTask(task);
+    expect(user.content.length).toBe(0)
 
-    const updatedUsers = JSON.parse(localStorage.getItem('users'));
-    const updatedUser = updatedUsers.find((user) => user.username === username);
-
-    expect(updatedUser.content).toEqual([]);
-  });
-});
+    localStorage.clear()
+    sessionStorage.clear()
+  })
+})

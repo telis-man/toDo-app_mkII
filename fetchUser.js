@@ -1,7 +1,7 @@
 export function fetchUser(username, password) {
   if (localStorage.getItem('users')) {
     const usersArr = JSON.parse(localStorage.getItem('users'))
-    for (user of usersArr) {
+    for (let user of usersArr) {
       if (user.username === username && user.password === password) {
         return user
       }
